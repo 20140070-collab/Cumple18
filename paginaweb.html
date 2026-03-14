@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feliz 18, mi amor</title>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fff5f7 0%, #ffe4ec 45%, #fff 100%);
+      color: #4a1f2d;
+      overflow-x: hidden;
+    }
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -30px;
+      font-size: 18px;
+      opacity: 0.25;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0; }
+      10% { opacity: 0.25; }
+      100% { transform: translateY(-110vh) scale(1.3); opacity: 0; }
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: 28px;
+      padding: 48px 28px;
+      box-shadow: 0 20px 50px rgba(122, 43, 73, 0.12);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #ffd6e3;
+      color: #8c3453;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      margin: 0 0 14px;
+      line-height: 1.05;
+    }
+
+    .subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      color: #6a3044;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: #d94f7d;
+      color: white;
+      box-shadow: 0 10px 25px rgba(217, 79, 125, 0.25);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #b23863;
+      border: 1px solid #f0bdd0;
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 14px;
+    }
+
+    .section-text {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      color: #6f3b4f;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.86);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 12px 30px rgba(114, 53, 74, 0.08);
+      border: 1px solid #ffe1eb;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #9c2f59;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      line-height: 1.65;
+    }
+
+    .timeline {
+      max-width: 760px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      background: rgba(255,255,255,0.9);
+      border-left: 5px solid #e35d89;
+      border-radius: 18px;
+      padding: 20px 22px;
+      box-shadow: 0 10px 26px rgba(114, 53, 74, 0.08);
+    }
+
+    .timeline-item strong {
+      color: #a6325d;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .letter {
+      max-width: 850px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.9);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 18px 36px rgba(114, 53, 74, 0.09);
+      line-height: 1.9;
+      font-size: 1.05rem;
+      border: 1px solid #ffe2ec;
+    }
+
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .reason {
+      background: linear-gradient(180deg, #fff 0%, #fff4f8 100%);
+      border: 1px solid #ffd9e6;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 20px rgba(114, 53, 74, 0.07);
+    }
+
+    .reason span {
+      display: inline-block;
+      width: 34px;
+      height: 34px;
+      line-height: 34px;
+      border-radius: 50%;
+      background: #e45584;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .music-box {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      background: rgba(255,255,255,0.88);
+      border-radius: 24px;
+      padding: 30px;
+      border: 1px solid #ffe2ec;
+      box-shadow: 0 18px 36px rgba(114, 53, 74, 0.09);
+    }
+
+    .music-box iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border: 0;
+      border-radius: 18px;
+      margin-top: 18px;
+    }
+
+    .final-message {
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      background: linear-gradient(180deg, #fff 0%, #fff0f5 100%);
+      border-radius: 28px;
+      border: 1px solid #ffd8e6;
+      box-shadow: 0 18px 36px rgba(114, 53, 74, 0.09);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px 60px;
+      color: #8c5468;
+      position: relative;
+      z-index: 1;
+    }
+
+    .small-note {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding: 36px 20px; }
+      .letter { padding: 24px 20px; }
+      .music-box iframe { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts" aria-hidden="true">
+    <div class="heart" style="left:5%; animation-duration:12s; animation-delay:0s;">❤</div>
+    <div class="heart" style="left:15%; animation-duration:14s; animation-delay:2s;">❤</div>
+    <div class="heart" style="left:28%; animation-duration:11s; animation-delay:1s;">❤</div>
+    <div class="heart" style="left:40%; animation-duration:15s; animation-delay:3s;">❤</div>
+    <div class="heart" style="left:52%; animation-duration:12s; animation-delay:5s;">❤</div>
+    <div class="heart" style="left:64%; animation-duration:16s; animation-delay:2s;">❤</div>
+    <div class="heart" style="left:76%; animation-duration:13s; animation-delay:4s;">❤</div>
+    <div class="heart" style="left:88%; animation-duration:14s; animation-delay:1s;">❤</div>
+  </div>
+
+  <header>
+    <div class="hero">
+      <div class="badge">FELICES 18 ✨</div>
+      <h1>Feliz cumpleaños,<br>mi amor</h1>
+      <p class="subtitle">
+        Hoy el mundo celebra a una persona increíble: tú. Y aunque hoy no pueda abrazarte en persona,
+        hice este pequeño espacio para recordarte cuánto significas para mí y lo especial que es celebrar tus 18 años.
+      </p>
+      <div class="buttons">
+        <a class="btn btn-primary" href="#carta">Leer mi carta</a>
+        <a class="btn btn-secondary" href="#razones">18 razones por las que te amo</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Lo especial de este día</h2>
+      <p class="section-text">
+        Cumplir 18 no es cualquier cosa. Es una nueva etapa, nuevos sueños y una nueva versión de ti.
+        Y yo solo quiero que nunca olvides lo valiosa, hermosa y fuerte que eres.
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>🌷 Eres única</h3>
+          <p>No conozco a nadie con tu manera de sonreír, de sentir y de hacer que todo sea más bonito.</p>
+        </div>
+        <div class="card">
+          <h3>✨ Eres luz</h3>
+          <p>Tienes esa forma de alegrar los días, incluso cuando ni tú misma te das cuenta de lo mucho que iluminas.</p>
+        </div>
+        <div class="card">
+          <h3>💖 Eres inolvidable</h3>
+          <p>Hay personas que pasan por la vida... y hay personas que dejan huella. Tú eres una de ellas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: rgba(255,255,255,0.45);">
+    <div class="container">
+      <h2 class="section-title">Nuestra historia</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>📍 Cuando te conocí</strong>
+          <div>Recuerdo el día que te conocí y lo primero que pensé fue que había algo muy especial en ti. No imaginaba que ese momento tan simple iba a convertirse en el inicio de algo tan importante para mí. Desde ese día supe que quería seguir conociéndote y descubrir todo lo bonito que hay en ti.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>💬 Nuestra primera conversación importante</strong>
+          <div>Nuestra primera conversación fue uno de esos momentos que se quedan en la memoria. Me di cuenta de lo fácil que era hablar contigo, de lo divertida e interesante que eres, y desde ahí empecé a sentir que teníamos una conexión muy especial.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>💞 El momento en que supe que eras especial</strong>
+          <div>Hubo un momento en el que entendí que no eras como las demás personas que había conocido. Fue cuando vi tu forma de ser, tu manera de tratar a los demás y la forma en que haces que todo sea más bonito. Ahí supe que eras alguien realmente especial para mí.</div>
+        </div>
+        <div class="timeline-item">
+          <strong>🎂 Hoy: tus 18 años</strong>
+          <div>HHoy celebras tus 18 años, una etapa nueva llena de sueños, metas y momentos increíbles que están por venir. Me siento muy feliz de poder celebrar tu vida, porque eres una persona increíble y mereces todo lo bonito del mundo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="carta">
+    <div class="container">
+      <h2 class="section-title">Una carta para ti</h2>
+      <div class="letter">
+        <p>Mi amor:</p>
+        <p>
+          Hoy cumples 18 años, y aunque no podamos vernos en este momento, no quería dejar pasar la oportunidad de recordarte lo increíble que eres. 
+          Quiero que sepas que admiro profundamente tu forma de ser, tu corazón, tu sonrisa y esa manera tan tuya
+           de hacer que todo se sienta más bonito cuando estás cerca.
+        </p>
+        <p>
+          Cumplir 18 años es un momento muy importante en la vida de una persona. Es el inicio de una nueva etapa, llena de sueños, metas y experiencias que te ayudarán a crecer todavía más. Y aunque el tiempo pase y cambien muchas cosas, espero que nunca cambie esa esencia tan especial que tienes.
+        </p>
+        <p>
+          Quiero que sepas que eres una persona muy valiosa. Tu forma de pensar, tu forma de sentir y tu forma de ver el mundo hacen que seas alguien realmente único. A veces quizás no te das cuenta de lo especial que eres, pero créeme que tienes una luz que se nota y que hace que las personas a tu alrededor se sientan bien.
+        </p>
+        <p>
+            Deseo de todo corazón que cada sueño que tengas empiece poco a poco a hacerse realidad. Que cada meta que te propongas la puedas alcanzar, que cada reto te haga más fuerte y que nunca te falten razones para sonreír. Mereces cosas hermosas en la vida, mereces amor bonito, momentos felices y personas que te valoren siempre.
+        </p>
+        <p>
+            También quiero agradecerte por todo lo que significas para mí. Gracias por existir, por ser tú, por cada momento que hemos compartido, por cada palabra, cada risa y cada recuerdo que llevamos con nosotros. Aunque hoy no podamos estar juntos en persona, quise hacer algo especial para recordarte lo importante que eres para mí.
+        </p>
+        <p>
+            Espero que cuando leas esta carta sonrías, porque fue escrita con mucho cariño pensando solo en ti. Ojalá este nuevo año de vida esté lleno de momentos increíbles, aventuras nuevas y recuerdos que te hagan sentir feliz.
+        </p>
+        <p>
+            Y aunque el tiempo pase, espero que siempre recuerdes este día como el inicio de una etapa hermosa en tu vida.
+        </p>
+        <p>
+          Felices 18, mi niña. Ojalá este nuevo año de vida te traiga muchísima felicidad,
+          y ojalá yo pueda seguir acompañándote en muchos recuerdos más.
+        </p>
+        <p>Con mucho amor,<br><strong>Tu niño 💌</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="razones" style="background: rgba(255,255,255,0.45);">
+    <div class="container">
+      <h2 class="section-title">18 razones por las que te amo</h2>
+      <p class="section-text">Puedes cambiar estas razones por otras más personales si quieres que la página quede todavía más impactante.</p>
+      <div class="reasons">
+        <div class="reason"><span>1</span><div>Porque tu sonrisa puede mejorar hasta el peor día.</div></div>
+        <div class="reason"><span>2</span><div>Porque eres más fuerte de lo que imaginas.</div></div>
+        <div class="reason"><span>3</span><div>Porque contigo todo se siente más bonito.</div></div>
+        <div class="reason"><span>4</span><div>Porque tienes una forma única de hacerme feliz.</div></div>
+        <div class="reason"><span>5</span><div>Porque admiro tu corazón.</div></div>
+        <div class="reason"><span>6</span><div>Porque eres auténtica.</div></div>
+        <div class="reason"><span>7</span><div>Porque tus palabras se quedan conmigo.</div></div>
+        <div class="reason"><span>8</span><div>Porque tu presencia se siente incluso en la distancia.</div></div>
+        <div class="reason"><span>9</span><div>Porque me encanta tu forma de ser.</div></div>
+        <div class="reason"><span>10</span><div>Porque haces que quiera dar siempre lo mejor de mí.</div></div>
+        <div class="reason"><span>11</span><div>Porque tus sueños también me importan.</div></div>
+        <div class="reason"><span>12</span><div>Porque eres tierna, valiente y especial al mismo tiempo.</div></div>
+        <div class="reason"><span>13</span><div>Porque cada recuerdo contigo vale muchísimo.</div></div>
+        <div class="reason"><span>14</span><div>Porque tienes una energía que no se olvida.</div></div>
+        <div class="reason"><span>15</span><div>Porque incluso tus pequeños detalles significan mucho para mí.</div></div>
+        <div class="reason"><span>16</span><div>Porque contigo me siento afortunado.</div></div>
+        <div class="reason"><span>17</span><div>Porque eres una de las personas más bonitas que he conocido.</div></div>
+        <div class="reason"><span>18</span><div>Porque quiero seguir celebrando muchos cumpleaños contigo.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Nuestra canción</h2>
+      <div class="music-box">
+        <iframe 
+  width="560" 
+  height="315" 
+  src="https://www.youtube.com/embed/l-JJoTlUGho?rel=0"
+  title="Nuestra canción"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allowfullscreen>
+</iframe>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="final-message">
+        <h2 class="section-title" style="margin-top:0;">Para terminar...</h2>
+        <p class="section-text" style="margin-bottom: 0;">
+          Tal vez esta página no pueda reemplazar un abrazo, pero sí puede recordarte que alguien pensó en ti con muchísimo cariño.
+          Feliz cumpleaños número 18. Espero que cuando leas esto, sonrías muy bonito.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Hecho con amor para ti 💗
+    <div class="small-note">Te amo con todo mi corazon mi vida</div>
+  </footer>
+</body>
+</html>
